@@ -1,0 +1,30 @@
+
+h1{
+    text-align: center;
+    font-family: "Monaco",monospace;
+    background-color:  #DAF7A6 ;
+
+}
+
+.box{
+    display:flex;
+    justify-content: center;
+    font-family: "Monaco",monospace;
+}
+
+#imagen{
+    border-style: solid;
+}
+
+#datos{
+    margin-left: 4%;
+}
+
+#contacto{
+    text-align:right;
+}
+
+h4{
+    color: #581845;
+    background-color:  #ffe09d ;
+}
