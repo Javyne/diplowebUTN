@@ -1,0 +1,28 @@
+#Contenedor{
+    width: 100%;
+    height: 200px;
+    border-style: solid;
+    display:flex;
+    justify-content: space-between;
+
+}
+
+#Rojo{
+    background: red;
+}
+
+#Verde{
+    background: green;
+}
+
+#Azul{
+    background: blue;
+}
+.caja{
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+}
