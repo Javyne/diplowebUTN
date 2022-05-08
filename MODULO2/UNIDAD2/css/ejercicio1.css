@@ -2,6 +2,8 @@
     width: 600px;
     height: 600px;
     border-style: solid;
+    display:flex;
+    flex-direction: column;
 }
 
 #Rojo{
@@ -17,11 +19,10 @@
 }
 .caja{
     color: white;
-    text-align: center;
-    vertical-align: middle;
     width: 200px;
     height: 200px;
-    line-height: 200px;
-    position: relative;
-    left: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
 }
