@@ -1,0 +1,24 @@
+/*IMPORTA FUENTES*/
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital@0;1&display=swap');
+
+body{
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.transporte, .maximo{
+    width: 30%;
+    text-align: center;
+    margin-top: 15%;
+    border-radius: 20px ;
+}
+
+.transporte{
+    background: linear-gradient(90deg,rgba(255,87,51,1) 0% ,rgba(255,195,0,1) 50%, rgba(255,87,51,1) 100% );
+}
+
+.maximo{
+    color: white;
+    background: linear-gradient(90deg, rgba(144,12,63,1) 0%,rgba(199,0,57,1) 50%, rgba(144,12,63,1) 100% );
+}

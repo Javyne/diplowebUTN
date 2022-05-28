@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body >
+
+    <div class="transporte">
+        <h1>Medio De Transporte</h1>
+        <p>Introduzca la distancia en metros</p>
+        <input type="text" name="metros" id="metrosID">
+        <button onclick="medioTransporte()">Calcular</button>
+        <h2 id="resultadoTransporte">Medio:</h2>
+        <br>
+        <br>
+        <br>
+        <script>
+    
+        function medioTransporte(){
+            var distancia = document.getElementById('metrosID').value;
+            var medio = "";
+        
+            if(distancia == ""){
+                medio = 'Introduzca una distancia';}
+            else if(distancia < 1000){
+                medio = "Pie"}
+            else if(1000 <= distancia && distancia < 10000){
+                medio = "Bicicleta"}
+            else if(10000 <= distancia && distancia < 30000){
+                medio = "Colectivo"}
+            else if(30000 <= distancia && distancia < 100000){
+                medio = "Auto"}
+            else if(100000 <= distancia){
+                medio = "Avion"};
+            
+            document.getElementById('resultadoTransporte').textContent = 'Medio: ' + medio;
+        
+        }
+    
+        </script>
+    </div>
+
+
+    <div class="maximo">
+        <h1>Buscar Maximo numero</h1>
+        <p>Introduzca una lista de numeros separados por ","</p>
+        <input type="text" name="lista" id="listaID">
+        <button onclick="maxNum()">Buscar</button>
+        <h2 id="maximo">Numero maximo:</h2>
+    
+    
+        <script>
+        function maxNum(){
+            lista = document.getElementById('listaID').value
+            lista = lista.split(',').map(Number)
+            var max = lista[4]
+            if(!lista.length){
+                max = 'No hay numeros en la lista';
+            };
+    
+            for(var num = 1; num < lista.length; num++){
+            
+                if(max < lista[num]){
+                    max = lista[num]
+                };
+            };
+    
+            document.getElementById('maximo').textContent = 'Numero maximo: ' + max;
+    
+        };
+        </script>
+        <br>
+        <br>
+        <br>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
