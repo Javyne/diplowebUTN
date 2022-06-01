@@ -1,0 +1,44 @@
+.contenedor{
+
+    background-color: black;
+    display:flex;
+    justify-content: space-around;
+
+}
+
+.cuadrado{
+    width: 100px;
+    height: 100px;
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;
+    font-family: Arial;
+    border: 2px solid white;
+    border-radius: 25%;
+}
+
+.cuadrado:hover{
+    cursor:pointer;
+    transform: rotate(45deg);
+    transition:all 0.5s ease;
+}
+
+#cuad1{
+    background-color: cyan;
+}
+
+#cuad2{
+    background-color: yellow;
+}
+
+#cuad3{
+    background-color: magenta;
+}
+
+#cuad4{
+    background-color: black;
+    color: white;
+}
