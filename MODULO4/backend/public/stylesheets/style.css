@@ -1,8 +1,31 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root{
+  /*--claro: #f9f8f6;
+  --acento-claro: #63b8e5;
+  --main: #2391e4;
+  --acento-oscuro: #6786af;
+  --oscuro: #14171c;*/
+
+  --claro: #efefef;
+  /*--acento-claro: #ffc947;*/
+  --acento-claro: #ff8c00;
+  --fondo-claro: #EAEAEA;
+  --main: #557ed3;
+  --main20: #557ed320;
+  --main-claro:#D8DDE7;
+  --acento-oscuro: #185adb;
+  --oscuro: #0a1931;
+  --oscuro90:#0a193190;
+  --danger: #f44336;
 }
 
-a {
-  color: #00B7FF;
+
+
+.content{
+  position: absolute;
+  background: var(--fond-claro);
+  width: 100%;
+  min-height: calc(100vh - 50px);
+  padding-top: 50px;
+  top: 0px;
+  padding-left: 300px;
 }
