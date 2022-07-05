@@ -1,15 +1,9 @@
 .sidebar{
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: var(--claro);
-    width: 300px;
-    top: 0;
-    left: 0;
-    position: fixed;
     border-radius: 5px;
     box-shadow: 4px 0px 2px -2px gray;
-    z-index: 1;
 }
 
 .side-head{
@@ -32,18 +26,7 @@
     align-items: center;
 }
 
-.side-list{
-    list-style: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.side-list li{
-
-}
-
-.side-list li a{
+.side-cont a{
     text-decoration: none;
     width: 90%;
     display: flex;
@@ -57,13 +40,13 @@
     align-items: center;
 }
 
-.side-list li a:hover {
+.side-cont a:hover {
     background-color: var(--main20);
     font-weight: 700;
   }
 
 
-.side-list li a.active{
+.side-cont a.active{
     background-color: var(--main);
     color: var(--claro);
     box-shadow: 0 4px 2px -2px gray;
