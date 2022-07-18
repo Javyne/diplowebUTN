@@ -6,17 +6,27 @@
   --oscuro: #14171c;*/
 
   --claro: #efefef;
-  /*--acento-claro: #ffc947;*/
   --acento-claro: #ff8c00;
+  --acento-claro50: #ff8c0080;
   --fondo-claro: #EAEAEA;
   --main: #557ed3;
-  --main20: #557ed320;
+  --main20: #557ed350;
   --main-claro:#D8DDE7;
   --acento-oscuro: #185adb;
   --oscuro: #0a1931;
   --oscuro90:#0a193190;
-  --danger: #f44336;
+  --danger: #f32c1e;
+  --warning: #c08432;
+  --success: #48906a;
+
+  /*DEGRADADOS*/
+
+  --main-deg: linear-gradient(60deg, #6d8fd7, #4571cb);
+  --success-deg: linear-gradient(60deg, #5cae84, #48906a);
+  --danger-deg: linear-gradient(60deg, #f55a4e, #f32c1e);
+  --warning-deg: linear-gradient(60deg, #d29d53, #c08432);
 }
+
 
 /*
 

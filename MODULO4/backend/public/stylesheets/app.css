@@ -1,29 +1,10 @@
-html{
-    height: 100%;
-}
-
-body{
-    min-height: 100%;
-}
-
-.nav-bar{
-    grid-area: nav-bar;
-}
-
-.sidebar{
-    grid-area: sidebar;
-}
-
-.main{
-    grid-area: main;
-}
+@import 'root/variables.css';
+@import 'layout/layout.css';
 
 
-.grid-container{
-    display: grid;
-    grid-template-areas:
-        "sidebar nav-bar"
-        "sidebar main";
-    grid-template-rows: 50px auto;
-    grid-template-columns: 300px auto;
-  }
+
+
+
+
+
+

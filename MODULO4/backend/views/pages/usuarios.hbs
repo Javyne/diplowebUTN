@@ -1,0 +1,118 @@
+<div class="page-header">
+    <h1>{{{title}}}</h1>
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" id="new" data-user="{}">{{{newButton}}}</a>
+</div>
+
+<div class="page-users">
+    {{#each data}}
+    <div class="user-card">
+        <img class="user-img" src="{{this.img}}" />
+        <h4>{{this.nombre}}</h4>
+        <div class="botonera">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-user="{{json this}}"
+                id="detail">{{>detailBtn}}</a>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-user="{{json this}}"
+                id="edit">{{>editBtn}}</a>
+
+            <form action="/usuarios/del/{{this.id}}" method="post">
+                <button class="noBtn" type="submit">{{>deleteBtn}}</button>
+            </form>
+
+        </div>
+
+
+    </div>
+
+    {{/each}}
+</div>
+
+
+{{>usersModal}}
+
+
+<script>
+
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form =>
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            swal({
+                title: "¿Estas segur@?",
+                text: "Una vez borrado no se puede recuperar el registro",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+
+
+        })
+    );
+
+    const modal = document.getElementById('exampleModal')
+
+    modal.addEventListener('show.bs.modal', event => {
+
+        const button = event.relatedTarget;
+        const data = JSON.parse(button.dataset.user);
+
+        switch (button.id) {
+
+            case 'edit':
+                fillModal(data);
+                break;
+
+            case 'detail':
+                fillModal(data);
+                disableElements();
+                break;
+
+            case 'new':
+                emptyModal();
+                break;
+        }
+
+
+    })
+
+
+    modal.addEventListener('hide.bs.modal', event => {
+        enableElements();
+    })
+
+    function disableElements() {
+        const inputs = [...document.getElementsByTagName('input')];
+        inputs.forEach(input => input.setAttribute('disabled', 'true'));
+        document.getElementById('btnSave').setAttribute('disabled', 'true');
+    }
+
+    function enableElements() {
+        const inputs = [...document.getElementsByTagName('input')];
+        inputs.forEach(input => {
+            input.id !== 'id' ? input.removeAttribute('disabled') : '';
+        });
+        document.getElementById('btnSave').removeAttribute('disabled');
+    }
+
+    function fillModal(data) {
+        modal.querySelector('#title').textContent = `Detalles: ${data.nombre}`;
+        modal.querySelector('#id').value = data.id;
+        modal.querySelector('#nombre').value = data.nombre;
+        modal.querySelector('#userName').value = data.userName;
+        modal.querySelector('#pass').value = data.pass;
+        modal.querySelector('#img').value = data.img;
+    }
+
+    function emptyModal() {
+        modal.querySelector('#title').textContent = `Nuevo Usuario`;
+        const inputs = [...document.getElementsByTagName('input')];
+        inputs.map(input => input.value = "");
+    }
+
+
+
+</script>

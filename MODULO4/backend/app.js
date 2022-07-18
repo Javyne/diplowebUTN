@@ -6,12 +6,14 @@ const logger = require('morgan');
 const session = require('express-session');
 const hbs = require('hbs');
 
+
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('json', function(data){return JSON.stringify(data);})
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,11 +25,19 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-
+//Session handler
+app.use(function(req, res, next) {
+  res.locals.session = req.session;
+  next();
+})
 
 //Rutes
 app.use('/', require('./routes/index'));
+app.use('/usuarios', require('./routes/usuarios'));
 app.use('/api/auth', require('./routes/auth'));
+
+
+
 
 
 // catch 404 and forward to error handler

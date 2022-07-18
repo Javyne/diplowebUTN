@@ -1,0 +1,36 @@
+<div class="page-header">
+    <h1>{{{title}}}</h1>
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" id="new" data-user="{}">{{{newButton}}}</a>
+</div>
+
+<div class="page-users">
+    {{#each data}}
+    <div class="user-card">
+        <img class="user-img" src="{{this.img}}" />
+        <h4>{{this.nombre}}</h4>
+        <div class="botonera">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-user="{{json this}}"
+                id="detail">{{>detailBtn}}</a>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-user="{{json this}}"
+                id="edit">{{>editBtn}}</a>
+            <form action="/usuarios/del/{{this.id}}" method="post">
+                <button class="noBtn" type="submit">{{>deleteBtn}}</button>
+            </form>
+        </div>
+    </div>
+    
+    {{/each}}
+    {{>testpartial data=data.[0]}}
+</div>
+
+
+
+
+
+<script>
+
+   
+
+
+
+</script>
