@@ -6,6 +6,9 @@ const logger = require('morgan');
 const session = require('express-session');
 const hbs = require('hbs');
 
+require('dotenv').config();
+
+
 
 const app = express();
 
@@ -18,13 +21,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, 'public')));  
 app.use(session({
   secret: '65dfs6d5f5s4df65956s2d32f1',
   resave: false,
   saveUninitialized: true
 }))
+
 //Session handler
 app.use(function(req, res, next) {
   res.locals.session = req.session;

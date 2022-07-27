@@ -91,7 +91,7 @@ table{
     flex-direction: column;
     border-radius: 3px;
     width: 15rem;
-    height: 20rem;
+    height: 22rem;
     background: var(--fondo-claro);
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
@@ -104,6 +104,11 @@ table{
 .user-img{
     width: 14rem;
     background-color: grey;
+}
+
+.user-titles{
+    display: flex;
+    gap: 5px;
 }
 
 .botonera{

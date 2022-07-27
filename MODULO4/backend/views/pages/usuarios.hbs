@@ -1,6 +1,6 @@
 <div class="page-header">
     <h1>{{{title}}}</h1>
-    <a data-bs-toggle="modal" data-bs-target="#exampleModal" id="new" data-user="{}">{{{newButton}}}</a>
+    <a data-bs-toggle="modal" data-bs-target="#newUserModal" id="new" data-user="{}">{{{newButton}}}</a>
 </div>
 
 <div class="page-users">
@@ -8,13 +8,21 @@
     <div class="user-card">
         <img class="user-img" src="{{this.img}}" />
         <h4>{{this.nombre}}</h4>
+        <div class="user-titles">
+            {{#if this.es_admin}}
+            <h6>ADMIN</h6>
+            {{/if}}
+            {{#if this.es_tecnico}}
+            <h6>Tecnico</h6>
+            {{/if}}
+        </div>
         <div class="botonera">
-            <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-user="{{json this}}"
+            <a data-bs-toggle="modal" data-bs-target="#updateUserModal" data-user="{{json this}}"
                 id="detail">{{>detailBtn}}</a>
-            <a data-bs-toggle="modal" data-bs-target="#exampleModal" data-user="{{json this}}"
+            <a data-bs-toggle="modal" data-bs-target="#updateUserModal" data-user="{{json this}}"
                 id="edit">{{>editBtn}}</a>
 
-            <form action="/usuarios/del/{{this.id}}" method="post">
+            <form class="delete" action="/usuarios/del/{{this.id}}" method="delete">
                 <button class="noBtn" type="submit">{{>deleteBtn}}</button>
             </form>
 
@@ -27,12 +35,13 @@
 </div>
 
 
-{{>usersModal}}
+{{>users/newUser}}
+{{>users/updateUser}}
 
 
 <script>
 
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll('form.delete');
     forms.forEach(form =>
         form.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -48,71 +57,58 @@
                         form.submit();
                     }
                 });
-
-
         })
     );
 
-    const modal = document.getElementById('exampleModal')
 
-    modal.addEventListener('show.bs.modal', event => {
+
+    document.getElementById('#newUserForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+
+    })
+
+    const modalNew = document.getElementById('newUserModal')
+    modalNew.addEventListener('show.bs.modal', event => { document.getElementById('nombre').focus() });
+
+    const modalUpdate = document.getElementById('updateUserModal');
+    modalUpdate.addEventListener('show.bs.modal', event => {
 
         const button = event.relatedTarget;
         const data = JSON.parse(button.dataset.user);
+        fillModal(data);
 
-        switch (button.id) {
-
-            case 'edit':
-                fillModal(data);
-                break;
-
-            case 'detail':
-                fillModal(data);
-                disableElements();
-                break;
-
-            case 'new':
-                emptyModal();
-                break;
+        if (button.id === "detail") {
+            disableInputs()
         }
-
-
     })
 
-
-    modal.addEventListener('hide.bs.modal', event => {
-        enableElements();
+    modalUpdate.addEventListener('hide.bs.modal', event => {
+        enableInputs();
     })
-
-    function disableElements() {
-        const inputs = [...document.getElementsByTagName('input')];
-        inputs.forEach(input => input.setAttribute('disabled', 'true'));
-        document.getElementById('btnSave').setAttribute('disabled', 'true');
-    }
-
-    function enableElements() {
-        const inputs = [...document.getElementsByTagName('input')];
-        inputs.forEach(input => {
-            input.id !== 'id' ? input.removeAttribute('disabled') : '';
-        });
-        document.getElementById('btnSave').removeAttribute('disabled');
-    }
 
     function fillModal(data) {
-        modal.querySelector('#title').textContent = `Detalles: ${data.nombre}`;
-        modal.querySelector('#id').value = data.id;
-        modal.querySelector('#nombre').value = data.nombre;
-        modal.querySelector('#userName').value = data.userName;
-        modal.querySelector('#pass').value = data.pass;
-        modal.querySelector('#img').value = data.img;
+        document.querySelector('#formDetails > div > #user_id').value = data.user_id;
+        document.querySelector('#formDetails > div > #nombre').value = data.nombre;
+        document.querySelector('#formDetails > div > #username').value = data.username;
+        document.querySelector('#formDetails > div > #pass').value = data.pass;
+        document.querySelector('#formDetails > div > #img').value = data.img;
+        document.querySelector('#formDetails > div > #es_tecnico').checked = data.es_tecnico;
+        document.querySelector('#formDetails > div > #es_admin').checked = data.es_admin;
     }
 
-    function emptyModal() {
-        modal.querySelector('#title').textContent = `Nuevo Usuario`;
-        const inputs = [...document.getElementsByTagName('input')];
-        inputs.map(input => input.value = "");
+    function disableInputs() {
+        const inputs = [...document.querySelectorAll('#formDetails > div > input')];
+        inputs.map(input => input.disabled = true);
+        document.querySelector('#formDetails > div > #btnSave').disabled = true;
     }
 
+    function enableInputs() {
+        const inputs = [...document.querySelectorAll('#formDetails > div > input')];
+        inputs.map(input => input.disabled = false);
+        document.querySelector('#formDetails > div > #btnSave').disabled = false;
+        document.querySelector('#formDetails > div > #user_id').disabled = true;
+    }
 
 
 </script>

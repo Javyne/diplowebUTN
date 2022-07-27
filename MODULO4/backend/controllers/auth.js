@@ -1,5 +1,5 @@
 const { request, response } = require('express');
-const users = require('../data/usuarios')
+const { getUserByPN } = require('../models/usuarios')
 
 const defaultLogin = (req = request, res = response) => {
     res.render('admin/login', {
@@ -7,10 +7,9 @@ const defaultLogin = (req = request, res = response) => {
     });
 }
 
+const validarUsuario = async (req = request, res = response) => {
 
-const validarUsuario = (req = request, res = response) => {
-
-    const user = users.find(usuario => usuario.userName === req.body.usuario && usuario.pass === req.body.pass);
+    const user = await getUserByPN(req.body.pass, req.body.usuario);
 
     if (user !== undefined) {
         req.session.nombre = user.nombre;
@@ -21,7 +20,6 @@ const validarUsuario = (req = request, res = response) => {
             layout: 'admin/layout',
             error: 'Error en usuario o contraseña'
         });
-
     }
 };
 
