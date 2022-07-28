@@ -13,6 +13,7 @@ const validarUsuario = async (req = request, res = response) => {
 
     if (user !== undefined) {
         req.session.nombre = user.nombre;
+        req.session.admin = user.es_admin
         return res.redirect('/')
     }
     else {

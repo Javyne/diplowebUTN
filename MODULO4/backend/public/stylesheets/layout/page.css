@@ -121,3 +121,20 @@ table{
 .noBtn{
     border: none;
 }
+
+/*-------------------------------PAGE INDEX---------------------------------------*/
+
+.indexImg{
+    width: 50%;
+    transform: translate(0,10%);
+    filter: blur(10px);
+    z-index:-1
+}
+
+/*-------------------------------PAGE 401---------------------------------------*/
+
+.page401{
+    position: absolute;
+    top:50%;
+    font-weight: 900;
+}

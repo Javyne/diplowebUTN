@@ -1,4 +1,5 @@
-const { getAll, getFirstWith } = require('../models/db');
+const { getAll, getFirstWith, insert } = require('../models/db');
+const md5 = require('md5');
 
 const tabla = `usuario`;
 const class_id = `ciente_id`;
@@ -12,18 +13,22 @@ const getUserById = async (id) => {
 }
 
 const getUserByPN = async (pass, username) => {
-    return await getFirstWith(tabla, `username = '${username}' and pass = '${pass}'`);;   
+    return await getFirstWith(tabla, `username = '${username}' and pass = '${md5(pass)}'`);
 }
 
 const getAllUsers = async () =>{
     return await getAll(tabla)
 }
 
+const insertUser = async (user) =>{
+    return await insert(tabla, user)
+}
 
 
 module.exports ={
     getAllUsers,
     getUserById,
     getUserByName,
-    getUserByPN
+    getUserByPN,
+    insertUser
 }

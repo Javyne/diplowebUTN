@@ -43,7 +43,11 @@ const getFirstWith = async (table, conditions) => {
 }
 
 const insert = async (table, data) => {
-    return await pool.query(`INSERT INTO ${table} SET ?`,[data]).then();
+    try{
+       return await pool.query(`INSERT INTO ${table} SET ?`,[data]); 
+    }catch(err){
+        throw err;
+    } 
 }
 
 module.exports = {
