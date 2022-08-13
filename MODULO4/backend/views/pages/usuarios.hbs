@@ -1,6 +1,6 @@
 <div class="page-header">
     <h1>{{{title}}}</h1>
-    <a data-bs-toggle="modal" data-bs-target="#newUserModal" id="new" data-user="{}">{{{newButton}}}</a>
+    <a href="/usuarios/new">{{{newButton}}}</a>
 </div>
 
 <div class="page-users">
@@ -17,13 +17,11 @@
             {{/if}}
         </div>
         <div class="botonera">
-            <a data-bs-toggle="modal" data-bs-target="#updateUserModal" data-user="{{json this}}"
-                id="detail">{{>detailBtn}}</a>
-            <a data-bs-toggle="modal" data-bs-target="#updateUserModal" data-user="{{json this}}"
-                id="edit">{{>editBtn}}</a>
+            <a href="/usuarios/details/{{this.user_id}}">{{>buttons/detailBtn}}</a>
+            <a href="/usuarios/edit/{{this.user_id}}">{{>buttons/editBtn}}</a>
 
-            <form class="delete" action="/usuarios/del/{{this.id}}" method="delete">
-                <button class="noBtn" type="submit">{{>deleteBtn}}</button>
+            <form class="delete" action="/usuarios/delete/{{this.user_id}}" method="post">
+                <button class="noBtn" type="submit">{{>buttons/deleteBtn}}</button>
             </form>
 
         </div>
@@ -34,81 +32,27 @@
     {{/each}}
 </div>
 
-
-{{>users/newUser}}
-{{>users/updateUser}}
-
-
 <script>
 
-    const forms = document.querySelectorAll('form.delete');
-    forms.forEach(form =>
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-            swal({
-                title: "¿Estas segur@?",
-                text: "Una vez borrado no se puede recuperar el registro",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        form.submit();
-                    }
-                });
+    const forms = document.querySelectorAll('.delete');
+
+    forms.forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "La eliminación no se puede revertir",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+                })
         })
-    );
-
-
-
-    document.getElementById('#newUserForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-
-
-    })
-
-    const modalNew = document.getElementById('newUserModal')
-    modalNew.addEventListener('show.bs.modal', event => { document.getElementById('nombre').focus() });
-
-    const modalUpdate = document.getElementById('updateUserModal');
-    modalUpdate.addEventListener('show.bs.modal', event => {
-
-        const button = event.relatedTarget;
-        const data = JSON.parse(button.dataset.user);
-        fillModal(data);
-
-        if (button.id === "detail") {
-            disableInputs()
-        }
-    })
-
-    modalUpdate.addEventListener('hide.bs.modal', event => {
-        enableInputs();
-    })
-
-    function fillModal(data) {
-        document.querySelector('#formDetails > div > #user_id').value = data.user_id;
-        document.querySelector('#formDetails > div > #nombre').value = data.nombre;
-        document.querySelector('#formDetails > div > #username').value = data.username;
-        document.querySelector('#formDetails > div > #pass').value = data.pass;
-        document.querySelector('#formDetails > div > #img').value = data.img;
-        document.querySelector('#formDetails > div > #es_tecnico').checked = data.es_tecnico;
-        document.querySelector('#formDetails > div > #es_admin').checked = data.es_admin;
-    }
-
-    function disableInputs() {
-        const inputs = [...document.querySelectorAll('#formDetails > div > input')];
-        inputs.map(input => input.disabled = true);
-        document.querySelector('#formDetails > div > #btnSave').disabled = true;
-    }
-
-    function enableInputs() {
-        const inputs = [...document.querySelectorAll('#formDetails > div > input')];
-        inputs.map(input => input.disabled = false);
-        document.querySelector('#formDetails > div > #btnSave').disabled = false;
-        document.querySelector('#formDetails > div > #user_id').disabled = true;
-    }
-
+    });
 
 </script>

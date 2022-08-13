@@ -6,6 +6,7 @@ const logger = require('morgan');
 const session = require('express-session');
 const hbs = require('hbs');
 
+
 require('dotenv').config();
 
 
@@ -17,6 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('json', function(data){return JSON.stringify(data);})
+hbs.registerHelper('selected', function (id1, id2){  if(parseInt(id1) === parseInt(id2)){return 'selected'}})
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,6 +39,8 @@ app.use(function(req, res, next) {
 //Rutes
 app.use('/', require('./routes/index'));
 app.use('/usuarios', require('./routes/usuarios'));
+app.use('/clientes', require('./routes/clientes'));
+app.use('/reps', require('./routes/reps'));
 app.use('/api/auth', require('./routes/auth'));
 
 

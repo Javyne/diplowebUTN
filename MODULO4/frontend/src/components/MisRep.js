@@ -2,10 +2,13 @@ import { useState } from 'react'
 import styled from 'styled-components';
 import { TablaRep } from './TablaRep';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
-import { dataCliente, dataReparaciones } from '../helpers';
+import { dataReparaciones } from '../helpers';
+
+//* PAGINA PARA VER LAS REPARACIONES DEL CLIENTE SE CONECTA A LA API*//
 
 export const MisRep = () => {
 
+    //*STATES PARA DATA Y SPAN
     const [data, setData] = useState([]);
     const [hidden, setHidden] = useState(true);
 
@@ -18,11 +21,12 @@ export const MisRep = () => {
 
     const checkData = ( e ) => {
       e.preventDefault();
-      let cliente = parseInt(e.target[0].value);
-      let pass = e.target[1].value.toString();
-
-      if(dataCliente(cliente,pass)){
-        setData(dataReparaciones(cliente));
+      let cliente_id = parseInt(e.target[0].value);
+      let reparaciones = dataReparaciones(cliente_id);
+      console.log(reparaciones)
+      
+      if(reparaciones.length > 0) {
+        setData(reparaciones);
         setHidden(true);     
       }
       else
@@ -43,17 +47,12 @@ export const MisRep = () => {
               </Form.Group>
             </Col>
             <Col sm={2} >
-              <Form.Group controlId="pass">
-                <Form.Control type="password" autoComplete="off" placeholder="Contraseña"/>
-              </Form.Group>
-            </Col>
-            <Col sm={2} >
               <Boton variant="primary" type="submit">
                 Ver mis reparaciones
               </Boton>
             </Col>
           </Row>
-          <Span hidden={hidden}>Cliente o contraseña incorrectos</Span>
+          <Span hidden={hidden}>Cliente incorrecto</Span>
         </Form>
       </Container>
       <div className="tabla">

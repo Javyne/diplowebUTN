@@ -1,7 +1,40 @@
 const { request, response } = require('express');
-const { getAllUsers, getUserByName, insertUser } = require('../models/usuarios');
+const { isChecked } = require('../helpers/funciones')
+const { getAllUsers, getUserByName, insertUser, getUserById, updateUser, deleteUser } = require('../models/usuarios');
+const md5 = require('md5');
 
+//* CREATE GET
+const newUserForm = (req, res) => {
+  res.render('partials/usersForm/newUserForm')
+}
 
+//* CREATE POST
+const newUser = async (req, res) => {
+
+  const user = {
+    username: req.body.username,
+    pass: md5(req.body.pass),
+    nombre: req.body.nombre,
+    img: req.body.img,
+    es_admin: isChecked(req.body.es_admin),
+    es_tecnico: isChecked(req.body.es_tecnico),
+  }
+
+  if (await getUserByName(user.username) !== undefined) {
+
+    res.render('partials/usersForm/newUserForm', {
+      data: user,
+      aviso:"usuario existente"
+    });
+
+  }else{
+    await insertUser(user);
+    res.redirect('/usuarios')  
+  }
+  
+}
+
+//* READ GET
 const redirectUsuarios = async (req = request, res = response) => {
  
   res.render('pages/usuarios', {
@@ -16,39 +49,47 @@ const redirectUsuarios = async (req = request, res = response) => {
   }
 }
 
+const detailsUserForm = async (req, res) => {
 
+  const user = await getUserById(req.params.id);
+  res.render('partials/usersForm/detailsUserForm',{
+    data: user
+  });
+ 
+}
+
+//* UPDATE GET
+const editUserForm = async (req, res) => {
+
+  const user = await getUserById(req.params.id);
+  res.render('partials/usersForm/editUserForm',{
+    data: user
+  });
+ 
+}
+
+//* UPDATE POST
 const userEdit = async (req, res) => {
-
-}
-
-const userDelete = async (req = request, res = response) => {
-
-}
-
-const newUser = async (req, res) => {
-
-  const result = undefined;
 
   const user = {
     username: req.body.username,
-    pass: req.body.pass,
     nombre: req.body.nombre,
     img: req.body.img,
     es_admin: isChecked(req.body.es_admin),
     es_tecnico: isChecked(req.body.es_tecnico),
   }
-  
-  if (getUserByName(user.username) !== undefined) {
-    res.send({aviso:"usuario existente"});
-  }else{
-    result = await insertUser(user);  
-  }
-  
-  if(result !== undefined){
-      res.status(201).json(result);
-  }
+
+  await updateUser(user, parseInt(req.params.id));
+  res.redirect('/usuarios')  
 }
 
+//* DELETE
+const userDelete = async (req, res) => {
+    
+    await deleteUser(parseInt(req.params.id));
+    res.redirect('/usuarios')  
+
+}
 
 
 module.exports = {
@@ -56,4 +97,7 @@ module.exports = {
   userEdit,
   userDelete,
   newUser,
+  newUserForm,
+  editUserForm,
+  detailsUserForm
 }
