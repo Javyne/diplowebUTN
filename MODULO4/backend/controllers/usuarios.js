@@ -1,5 +1,5 @@
 const { request, response } = require('express');
-const { isChecked } = require('../helpers/funciones')
+const { isChecked, imageOrDefault } = require('../helpers/funciones')
 const { getAllUsers, getUserByName, insertUser, getUserById, updateUser, deleteUser } = require('../models/usuarios');
 const md5 = require('md5');
 
@@ -15,7 +15,7 @@ const newUser = async (req, res) => {
     username: req.body.username,
     pass: md5(req.body.pass),
     nombre: req.body.nombre,
-    img: req.body.img,
+    img: imageOrDefault(req.body.img),
     es_admin: isChecked(req.body.es_admin),
     es_tecnico: isChecked(req.body.es_tecnico),
   }

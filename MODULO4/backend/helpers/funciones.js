@@ -17,9 +17,13 @@ const filtrar = (dataSet, filtro) =>{
     });
 }
 
+const imageOrDefault = (image) =>{
+    return image ? image : "/images/genericUser.png"
+}
+
 
 module.exports = {
     isChecked,
     filtrar,
-
+    imageOrDefault,
 }
