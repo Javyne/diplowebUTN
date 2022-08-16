@@ -36,7 +36,7 @@ const newUser = async (req, res) => {
 
 //* READ GET
 const redirectUsuarios = async (req = request, res = response) => {
- 
+
   res.render('pages/usuarios', {
     title: '<i class="bi bi-person-video3"></i>&nbsp;/ Usuarios',
     newButton: '<i class="bi bi-person-plus icon-new"></i>',
