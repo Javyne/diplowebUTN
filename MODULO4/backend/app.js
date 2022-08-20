@@ -71,9 +71,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-//Server listening on port 4000
-app.listen(process.env.PORT, () => {
-  console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
-});
+
 
 module.exports = app;
