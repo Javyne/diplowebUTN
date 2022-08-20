@@ -50,7 +50,7 @@ export const Faq = () => {
 
           </Accordion>
           </div>
-          <img src='../../images/it-1.jpg'/>
+          <img alt="" src='../../images/it-1.jpg'/>
         </Preguntas>
       </Main>
     </>

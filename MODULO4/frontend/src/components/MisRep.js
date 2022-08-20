@@ -2,39 +2,37 @@ import { useState } from 'react'
 import styled from 'styled-components';
 import { TablaRep } from './TablaRep';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
-import { dataReparaciones } from '../helpers';
+import { reparaciones } from '../data/dataClientes';
 
 //* PAGINA PARA VER LAS REPARACIONES DEL CLIENTE SE CONECTA A LA API*//
 
 export const MisRep = () => {
 
-    //*STATES PARA DATA Y SPAN
-    const [data, setData] = useState([]);
-    const [hidden, setHidden] = useState(true);
+  //*STATES PARA DATA Y SPAN
+  const [data, setData] = useState([]);
+  const [hidden, setHidden] = useState(true);
 
-    const resetState = (e) =>{
-      setData([]);
-      e.target[0].value = "";
-      e.target[1].value = "";
+  const resetState = (e) => {
+    setData([]);
+    e.target[0].value = "";
+    e.target[1].value = "";
+  }
+
+  const checkData = async (e) => {
+    e.preventDefault();
+    let cliente_id = parseInt(e.target[0].value);
+    let reps = (await reparaciones(cliente_id)).data;
+    console.log(reps)
+
+    if (reps.length > 0) {
+      setData(reps);
+      setHidden(true);
     }
-
-
-    const checkData = ( e ) => {
-      e.preventDefault();
-      let cliente_id = parseInt(e.target[0].value);
-      let reparaciones = dataReparaciones(cliente_id);
-      console.log(reparaciones)
-      
-      if(reparaciones.length > 0) {
-        setData(reparaciones);
-        setHidden(true);     
-      }
-      else
-      {
-        resetState(e);
-        setHidden(false);  
-      }
+    else {
+      resetState(e);
+      setHidden(false);
     }
+  }
 
   return (
     <Main>
@@ -43,7 +41,7 @@ export const MisRep = () => {
           <Row>
             <Col sm={2} >
               <Form.Group controlId="usuario">
-                <Form.Control type="text" placeholder="Nro Cliente"/>
+                <Form.Control type="text" placeholder="Nro Cliente" />
               </Form.Group>
             </Col>
             <Col sm={2} >
@@ -58,7 +56,7 @@ export const MisRep = () => {
       <div className="tabla">
         <TablaRep dataCliente={data} />
       </div>
-      
+
     </Main>
 
   )
