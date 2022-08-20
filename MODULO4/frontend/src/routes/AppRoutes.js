@@ -1,52 +1,50 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Home, Navigator, Faq, Servicios, Contacto, MisRep} from '../components';
-import {Routes, Route, useLocation} from 'react-router-dom';
-import {appBackGround} from '../helpers/appBackGround';
+import { Navigator } from '../components';
+import { Home, Faq, Servicios, Contacto, MisRep } from '../pages';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { appBackGround } from '../helpers/appBackGround';
+import {Grid} from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const AppRoutes = () => {
 
     const pagina = useLocation().pathname;
 
-  return ( 
-        
-        <AppPage fondo = {appBackGround(pagina)}>
-            <AppNav>
+    return (
+
+        <AppPage container fondo={appBackGround(pagina)}>
+            <AppNav item xs={12}>
                 <Navigator />
-                <Linea/>
+
             </AppNav>
-            <AppContain>
-                <Routes>  
-                    <Route exact path="/servicios" element={<Servicios />}/>
-                    <Route exact path="/misrep" element={<MisRep />}/> 
-                    <Route exact path="/contacto" element={<Contacto />}/>
-                    <Route exact path="/faq" element={<Faq />}/>
-                    <Route path="/*" element={<Home />} /> 
+            <AppContain item xs={12}>
+                <Routes>
+                    <Route exact path="/servicios" element={<Servicios />} />
+                    <Route exact path="/misrep" element={<MisRep />} />
+                    <Route exact path="/contacto" element={<Contacto />} />
+                    <Route exact path="/faq" element={<Faq />} />
+                    <Route path="/*" element={<Home />} />
                 </Routes>
             </AppContain>
         </AppPage>
 
-  )
+    )
 }
 
 
-const AppPage = styled.div`
+const AppPage = styled(Grid)`
     font-family: 'Lato', sans-serif;
     background: ${props => props.fondo};
     background-size: cover;
-    min-height: 100vh;
 `
 
-const AppNav = styled.div`
+const AppNav = styled(Grid)`
+    position: sticky;
+    top: 0;  
 
 `
 
-const AppContain = styled.div`
+const AppContain = styled(Grid)`
 
-`
-const Linea = styled.hr`
-    width: 80%;
-    margin-left: 10%;
-    
 `

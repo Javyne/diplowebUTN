@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {Button, Form} from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { BsGeoAlt, BsTelephone, BsWhatsapp, BsMailbox } from 'react-icons/bs';
-import { Mapa } from './Mapa';
+import { Mapa } from '../components';
 
 
 export const Contacto = () => {

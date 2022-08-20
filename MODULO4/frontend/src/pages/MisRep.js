@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components';
-import { TablaRep } from './TablaRep';
+import { TablaRep } from '../components';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 import { reparaciones } from '../data/dataClientes';
 
