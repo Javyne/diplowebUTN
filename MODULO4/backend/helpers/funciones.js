@@ -1,9 +1,9 @@
-
+//*Convierte valores de checkbox a true/false
 const isChecked = (value) =>{
     return (value !== undefined)
 }
 
-
+//*Filtra el contenido de un dataset, utilizado en busquedas
 const filtrar = (dataSet, filtro) =>{
 
     return dataSet.filter((data) =>{
@@ -17,13 +17,10 @@ const filtrar = (dataSet, filtro) =>{
     });
 }
 
-const imageOrDefault = (image) =>{
-    return image ? image : "/images/genericUser.png"
-}
+
 
 
 module.exports = {
     isChecked,
-    filtrar,
-    imageOrDefault,
+    filtrar
 }

@@ -21,7 +21,7 @@ const nroPendientes = async () => {
         const res = await pool.query(query);
         return {
             kpi: res[0].kpi,
-            title: 'pendientes',
+            title: 'ord. pendientes',
             class: "GridCardKpi"
         };
     }catch(error){
@@ -48,10 +48,10 @@ const topMarcas = async () => {
         const query = "SELECT marca as kpi FROM `reparacion` GROUP by marca ORDER BY count(marca)  DESC limit 5;";
         const response = await pool.query(query);
         let result = "";
-        response.forEach(kpi => result += kpi.kpi + " / ");
+        response.forEach(kpi => result += kpi.kpi + " - ");
         return {
             kpi: result,
-            title: 'top marcas',
+            title: 'top 5 marcas',
             class: "GridCardList"
         };
     }catch(error){

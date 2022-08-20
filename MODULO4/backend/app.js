@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const hbs = require('hbs');
-
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -28,20 +29,26 @@ app.use(session({
   secret: '65dfs6d5f5s4df65956s2d32f1',
   resave: false,
   saveUninitialized: true
-}))
+}));
+
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/'
+}));
 
 //Session handler
 app.use(function(req, res, next) {
   res.locals.session = req.session;
   next();
-})
+});
 
 //Rutes
 app.use('/', require('./routes/index'));
 app.use('/usuarios', require('./routes/usuarios'));
 app.use('/clientes', require('./routes/clientes'));
 app.use('/reps', require('./routes/reps'));
-app.use('/api/auth', require('./routes/auth'));
+app.use('/auth', require('./routes/auth'));
+app.use('/api', cors(), require('./routes/api'));
 
 
 

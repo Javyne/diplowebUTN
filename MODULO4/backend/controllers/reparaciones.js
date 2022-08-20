@@ -1,6 +1,6 @@
 const { request, response } = require('express');
 const { getAllClients } = require('../models/clientes');
-const { getAllReps, getRepById, insertRep, getRepJOINClient, updateRep, deleteRep } = require('../models/reparaciones')
+const { getAllReps, getRepById, insertRep, getRepJOINClient, updateRep, deleteRep, getRepsByClientId } = require('../models/reparaciones')
 
 //* CREATE GET
 const newRepForm = async (req = request, res = response) => {
@@ -47,6 +47,11 @@ const detailsRepForm = async (req = request, res = response) => {
   res.render('partials/repsForm/detailsRepForm', {
     data: orden
   });
+}
+
+const getRepsByClient = async (req, res) => {
+
+  res.json(await getRepsByClientId(req.params.id));
 }
 
 //* READ POST
@@ -98,6 +103,8 @@ const repDelete = async (req, res) => {
 
 }
 
+
+
 module.exports = {
   detailsRepForm,
   editRepForm,
@@ -107,4 +114,5 @@ module.exports = {
   redirectRep,
   repDelete,
   repEdit,
+  getRepsByClient
 }

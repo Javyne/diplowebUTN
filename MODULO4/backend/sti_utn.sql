@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 16-08-2022 a las 03:03:07
+-- Tiempo de generación: 20-08-2022 a las 19:44:24
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 7.4.26
 
@@ -2779,26 +2779,26 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
-  `es_tecnico` tinyint(1) DEFAULT '1',
-  `es_admin` tinyint(1) DEFAULT '0',
+  `es_tecnico` tinyint(1) NOT NULL DEFAULT '1',
+  `es_admin` tinyint(1) NOT NULL DEFAULT '0',
   `username` varchar(20) NOT NULL,
   `pass` text NOT NULL,
   `img` varchar(250) DEFAULT '/images/genericUser.png',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`user_id`, `nombre`, `es_tecnico`, `es_admin`, `username`, `pass`, `img`) VALUES
-(1, 'Javier Russo', 0, 1, 'jrusso', 'c4ca4238a0b923820dcc509a6f75849b', '/images/genericUser.png'),
-(2, 'Pepe Perez', 1, 0, 'pperez', 'e10adc3949ba59abbe56e057f20f883e', '/images/genericUser.png'),
-(3, 'Agata', 1, 1, 'arusso', 'e10adc3949ba59abbe56e057f20f883e', '/images/genericUser.png'),
-(4, 'Leonel Ramirez', 1, 0, 'lramirez', 'e10adc3949ba59abbe56e057f20f883e', '/images/genericUser.png'),
-(5, 'Florencia Lopez', 1, 0, 'flopez', 'e10adc3949ba59abbe56e057f20f883e', '/images/genericUser.png'),
-(10, 'Flavia Ursino', 0, 1, 'flavia', 'e10adc3949ba59abbe56e057f20f883e', '/images/genericUser.png');
+(1, 'Javier Russo', 0, 1, 'jrusso', 'c4ca4238a0b923820dcc509a6f75849b', 'ttw5zikxti8smbvfr6wd'),
+(2, 'Pepe Perez', 1, 0, 'pperez', 'e10adc3949ba59abbe56e057f20f883e', 'genericUser_ui4rst'),
+(3, 'Agata', 1, 1, 'arusso', 'e10adc3949ba59abbe56e057f20f883e', 'dkz2bjc143odhhajcjpd'),
+(4, 'Leonel Ramirez', 1, 0, 'lramirez', 'e10adc3949ba59abbe56e057f20f883e', 'genericUser_ui4rst'),
+(5, 'Florencia Lopez', 1, 0, 'flopez', 'e10adc3949ba59abbe56e057f20f883e', 'genericUser_ui4rst'),
+(10, 'Flavia Ursino', 0, 1, 'flavia', 'e10adc3949ba59abbe56e057f20f883e', 'genericUser_ui4rst');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

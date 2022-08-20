@@ -9,7 +9,7 @@ const getUserByName = async (username) => {
 }
   
 const getUserById = async (id) => {
-    return await getFirstWith(tabla, `${class_id} = ${id}`);   
+    return await getFirstWith(tabla, `${class_id} = ${id}`);  
 }
 
 const getUserByPN = async (pass, username) => {

@@ -10,7 +10,7 @@ const redirectIndex = async(req = request, res = response) => {
   if (req.session.nombre) {
 
   } else {
-    res.redirect('api/auth');
+    res.redirect('/auth');
   }
 }
 

@@ -3,9 +3,11 @@
 </div>
 
 <div class="form-container">
-    <img src="/images/genericUser.png" />
+    <div class="portrait">
+        <img src="{{data.imgUrl}}" />
+    </div>
     <div class="form-body">
-        <form class="row g-3" action="/usuarios/edit/{{data.user_id}}" method="post" id="editUserForm">
+        <form class="row g-3" action="/usuarios/edit/{{data.user_id}}" method="post" id="editUserForm" enctype="multipart/form-data">
             <div class="col-md-4">
                 <label for="user_id" class="form-label">ID</label>
                 <input type="text" class="form-control" placeholder="id" id="user_id" disabled value="{{data.user_id}}">
@@ -21,8 +23,9 @@
                     value="{{data.username}}" required>
             </div>
             <div class="col-md-6">
-                <label for="img" class="form-label">Imagen</label>
-                <input type="text" class="form-control" placeholder="Imagen" id="img" name="img" value="{{data.img}}">
+                <label for="imgFile" class="form-label">Imagen</label>
+                <input type="file" class="form-control" placeholder="Imagen" id="imgFile" name="imgFile">
+                <input type="hidden" name="img" value="{{data.img}}">
             </div>
             <div class="form-check col-md-3">
                 <label class="form-check-label" for="es_tecnico">Es Tecnico?</label>

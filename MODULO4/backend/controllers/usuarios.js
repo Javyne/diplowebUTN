@@ -1,6 +1,8 @@
 const { request, response } = require('express');
-const { isChecked, imageOrDefault } = require('../helpers/funciones')
+const { isChecked } = require('../helpers/funciones');
+const { imageOrDefault, destroyImage, setUrls, setUrl } = require('../helpers/cloudImages');
 const { getAllUsers, getUserByName, insertUser, getUserById, updateUser, deleteUser } = require('../models/usuarios');
+const { getRepsByUser } = require('../models/reparaciones');
 const md5 = require('md5');
 
 //* CREATE GET
@@ -10,12 +12,12 @@ const newUserForm = (req, res) => {
 
 //* CREATE POST
 const newUser = async (req, res) => {
-
+ 
   const user = {
     username: req.body.username,
     pass: md5(req.body.pass),
     nombre: req.body.nombre,
-    img: imageOrDefault(req.body.img),
+    img: req.files? await imageOrDefault(req.files.imgFile): await imageOrDefault(),
     es_admin: isChecked(req.body.es_admin),
     es_tecnico: isChecked(req.body.es_tecnico),
   }
@@ -42,7 +44,7 @@ const redirectUsuarios = async (req = request, res = response) => {
     newButton: '<i class="bi bi-person-plus icon-new"></i>',
     usuario: 'Hola ' + req.session.nombre,
     usuarios: 'active',
-    data: await getAllUsers()
+    data: setUrls(await getAllUsers())
   });
   if (req.session.nombre) { } else {
     res.redirect('api/auth');
@@ -51,9 +53,8 @@ const redirectUsuarios = async (req = request, res = response) => {
 
 const detailsUserForm = async (req, res) => {
 
-  const user = await getUserById(req.params.id);
   res.render('partials/usersForm/detailsUserForm',{
-    data: user
+    data: setUrl(await getUserById(req.params.id)),
   });
  
 }
@@ -61,9 +62,8 @@ const detailsUserForm = async (req, res) => {
 //* UPDATE GET
 const editUserForm = async (req, res) => {
 
-  const user = await getUserById(req.params.id);
   res.render('partials/usersForm/editUserForm',{
-    data: user
+    data: setUrl(await getUserById(req.params.id))
   });
  
 }
@@ -74,20 +74,28 @@ const userEdit = async (req, res) => {
   const user = {
     username: req.body.username,
     nombre: req.body.nombre,
-    img: req.body.img,
+    img: req.files ? await imageOrDefault(req.files.imgFile) : req.body.img,
     es_admin: isChecked(req.body.es_admin),
     es_tecnico: isChecked(req.body.es_tecnico),
   }
 
   await updateUser(user, parseInt(req.params.id));
-  res.redirect('/usuarios')  
+  res.redirect('/usuarios') 
 }
 
 //* DELETE
 const userDelete = async (req, res) => {
+
+    const user = await getUserById(req.params.id);
+
+    if (getRepsByUser(user.user_id).length > 0) {
+      res.redirect('/usuarios')
+    }
+
+    await destroyImage(user.img)
+    await deleteUser(user.user_id);
     
-    await deleteUser(parseInt(req.params.id));
-    res.redirect('/usuarios')  
+    res.redirect('/usuarios') 
 
 }
 

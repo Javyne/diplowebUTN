@@ -25,6 +25,7 @@
   --success-deg: linear-gradient(60deg, #5cae84, #48906a);
   --danger-deg: linear-gradient(60deg, #f55a4e, #f32c1e);
   --warning-deg: linear-gradient(60deg, #d29d53, #c08432);
+  --claro-deg: linear-gradient(45deg, #ffe6c890, #e6f0ff90);
 }
 
 
