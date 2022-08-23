@@ -2,6 +2,7 @@ const { request, response } = require('express');
 const { getUserByPN } = require('../models/usuarios')
 
 const defaultLogin = (req = request, res = response) => {
+
     res.render('admin/login', {
         layout: 'admin/layout'
     });

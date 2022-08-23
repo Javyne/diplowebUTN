@@ -1,7 +1,6 @@
-const { request, response } = require('express');
+const express = require('express');
 
-
-const isAdmin = (req = request, res = response, next) => {
+const isAdmin = (req, res, next) => {
 
     if(req.session.admin!==1){
         res.render('pages/401');
@@ -10,6 +9,16 @@ const isAdmin = (req = request, res = response, next) => {
     next();
 }
 
+const isLoggedIn = (req, res, next) => {
+
+    if (!req.session.nombre) {
+        res.redirect('/auth');
+    }else{
+        next();   
+    };    
+}
+
 module.exports = {
-    isAdmin
+    isAdmin,
+    isLoggedIn
 };

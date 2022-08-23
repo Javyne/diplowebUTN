@@ -1,9 +1,14 @@
-//RUTA /clientes/
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-//CONTROLADOR
+//*CONTROLADOR
 const { redirectClientes, newClientForm, newClient, editClientForm, clientEdit, clientDelete, findClient } = require('../controllers/clientes');
+
+//*MIDDLEWARES
+const { isLoggedIn } = require('../middlewares/rolValidate');
+router.use(isLoggedIn)
+
+//*RUTAS /clientes
 
 //* CREATE
 router.get('/new/', newClientForm);

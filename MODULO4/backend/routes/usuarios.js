@@ -1,10 +1,15 @@
-var express = require('express');
-const { redirectUsuarios, userEdit, userDelete, newUser, newUserForm, editUserForm, detailsUserForm } = require('../controllers/usuarios');
-const { isAdmin } = require('../middlewares/rolValidate');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* /usuarios */
+//*CONTROLADOR
+const { redirectUsuarios, userEdit, userDelete, newUser, newUserForm, editUserForm, detailsUserForm } = require('../controllers/usuarios');
+
+//*MIDDLEWARES
+const { isAdmin, isLoggedIn } = require('../middlewares/rolValidate');
+router.use(isLoggedIn)
 router.use(isAdmin)
+
+//*RUTAS /usuarios
 
 //* CREATE
 router.get('/new/', newUserForm);

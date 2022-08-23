@@ -1,35 +1,14 @@
 import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
 import { BsGeoAlt, BsTelephone, BsWhatsapp, BsMailbox } from 'react-icons/bs';
-import { Mapa } from '../components';
-
+import { Mapa, MailForm } from '../components';
 
 export const Contacto = () => {
+
   return (
     <>
       <Main>
         <Formulario>
-          <Form>
-            <h1>CONTACTO</h1>
-            <p>
-              Para contactarnos, por favor complete el siguiente formulario, o bien, comuníquese a través de los siguientes medios. Un asesor lo estará contactando a la brevedad.
-            </p>
-            <Form.Group className="mb-3" controlId="nombreID">
-              <Form.Control type="text" placeholder="Nombre" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="telefonoID">
-              <Form.Control type="" placeholder="Telefono" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="mailID">
-              <Form.Control placeholder="e-mail" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="msjID">
-              <Form.Control as="textarea" placeholder="Mensaje" />
-            </Form.Group>
-            <Button className="mb-3" variant="primary" type="submit">
-              Enviar
-            </Button>
-          </Form>
+          <MailForm/>
         </Formulario>
         <Data>
           <div className="mapa">
@@ -62,16 +41,6 @@ const Main = styled.div`
 const Formulario = styled.div`
   width: 50%;
   border-right: 1px solid #ccc;
-
-  form{
-    width: 60%;
-    margin-left: 20%;
-    margin-top: 15%;
-
-    p{
-      color: grey;
-    }
-  }
 `
 const Data = styled.div`
   width: 50%;

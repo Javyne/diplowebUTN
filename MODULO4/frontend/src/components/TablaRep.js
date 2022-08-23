@@ -9,6 +9,7 @@ export const TablaRep = ({dataCliente}) => {
             <thead>
                 <tr>
                 <th>#</th>
+                <th>Nro Orden</th>
                 <th>Fecha Ing.</th>
                 <th>Equipo</th>
                 <th>Marca</th>
@@ -21,6 +22,7 @@ export const TablaRep = ({dataCliente}) => {
                 {dataCliente.map((item, index) => 
                     <tr key={index}>
                         <td>{index+1}</td>
+                        <td>{item.orden_id}</td>
                         <td>{item.fecha}</td>
                         <td>{item.equipo}</td>
                         <td>{item.marca}</td>

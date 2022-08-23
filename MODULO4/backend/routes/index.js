@@ -1,10 +1,17 @@
-var express = require('express');
+const express = require('express');
+const router = express.Router();
+
+//*CONTROLADOR
 const { redirectIndex } = require('../controllers/index');
 
-var router = express.Router();
+//*MIDDLEWARES
+const { isLoggedIn } = require('../middlewares/rolValidate');
 
-/* GET home page. */
-router.get('/', redirectIndex);
+
+//* RUTAS /
+
+//* READ
+router.get('/', isLoggedIn, redirectIndex);
 
 
 module.exports = router;

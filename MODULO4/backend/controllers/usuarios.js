@@ -12,12 +12,12 @@ const newUserForm = (req, res) => {
 
 //* CREATE POST
 const newUser = async (req, res) => {
- 
+
   const user = {
     username: req.body.username,
     pass: md5(req.body.pass),
     nombre: req.body.nombre,
-    img: req.files? await imageOrDefault(req.files.imgFile): await imageOrDefault(),
+    img: req.files ? await imageOrDefault(req.files.imgFile) : await imageOrDefault(),
     es_admin: isChecked(req.body.es_admin),
     es_tecnico: isChecked(req.body.es_tecnico),
   }
@@ -26,14 +26,14 @@ const newUser = async (req, res) => {
 
     res.render('partials/usersForm/newUserForm', {
       data: user,
-      aviso:"usuario existente"
+      aviso: "usuario existente"
     });
 
-  }else{
+  } else {
     await insertUser(user);
-    res.redirect('/usuarios')  
+    res.redirect('/usuarios')
   }
-  
+
 }
 
 //* READ GET
@@ -46,26 +46,24 @@ const redirectUsuarios = async (req = request, res = response) => {
     usuarios: 'active',
     data: setUrls(await getAllUsers())
   });
-  if (req.session.nombre) { } else {
-    res.redirect('api/auth');
-  }
+
 }
 
 const detailsUserForm = async (req, res) => {
 
-  res.render('partials/usersForm/detailsUserForm',{
+  res.render('partials/usersForm/detailsUserForm', {
     data: setUrl(await getUserById(req.params.id)),
   });
- 
+
 }
 
 //* UPDATE GET
 const editUserForm = async (req, res) => {
 
-  res.render('partials/usersForm/editUserForm',{
+  res.render('partials/usersForm/editUserForm', {
     data: setUrl(await getUserById(req.params.id))
   });
- 
+
 }
 
 //* UPDATE POST
@@ -80,22 +78,22 @@ const userEdit = async (req, res) => {
   }
 
   await updateUser(user, parseInt(req.params.id));
-  res.redirect('/usuarios') 
+  res.redirect('/usuarios')
 }
 
 //* DELETE
 const userDelete = async (req, res) => {
 
-    const user = await getUserById(req.params.id);
+  const user = await getUserById(req.params.id);
 
-    if (getRepsByUser(user.user_id).length > 0) {
-      res.redirect('/usuarios')
-    }
+  if (getRepsByUser(user.user_id).length > 0) {
+    res.redirect('/usuarios')
+  }
 
-    await destroyImage(user.img)
-    await deleteUser(user.user_id);
-    
-    res.redirect('/usuarios') 
+  await destroyImage(user.img)
+  await deleteUser(user.user_id);
+
+  res.redirect('/usuarios')
 
 }
 

@@ -33,14 +33,10 @@ const newClient = async (req, res) => {
 
 //* READ GET
 const redirectClientes = async (req = request, res = response) => {
-  if (req.session.nombre) {
     res.render('pages/clientes', {
       clientes: 'active',
       data: await getAllClients()
     });
-  } else {
-    res.redirect('api/auth');
-  }
 }
 
 //* READ POST
@@ -55,8 +51,6 @@ const findClient = async (req, res) => {
   });
 
 }
-
-
 //* UPDATE GET
 const editClientForm = async (req, res) => {
 

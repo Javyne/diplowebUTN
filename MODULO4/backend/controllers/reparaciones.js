@@ -31,14 +31,11 @@ const newRep = async (req = request, res = response) => {
 
 //* READ GET
 const redirectRep = async (req = request, res = response) => {
-  if (req.session.nombre) {
-    res.render('pages/reparaciones', {
-      rep: 'active',
-      data: await getAllReps()
-    });
-  } else {
-    res.redirect('api/auth');
-  }
+  res.render('pages/reparaciones', {
+    rep: 'active',
+    data: await getAllReps()
+  });
+
 }
 
 const detailsRepForm = async (req = request, res = response) => {
@@ -97,9 +94,9 @@ const repEdit = async (req = request, res = response) => {
 
 //* DELETE
 const repDelete = async (req, res) => {
-    
+
   await deleteRep(parseInt(req.params.id));
-  res.redirect('/reps')  
+  res.redirect('/reps')
 
 }
 

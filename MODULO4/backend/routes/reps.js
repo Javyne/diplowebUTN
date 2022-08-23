@@ -1,9 +1,14 @@
-var express = require('express');
+const express = require('express');
+const router = express.Router();
+
+//*CONTROLADOR
 const { redirectRep, newRepForm, detailsRepForm, editRepForm, newRep, repDelete, repEdit } = require('../controllers/reparaciones');
 
-var router = express.Router();
+//*MIDDLEWARES
+const { isLoggedIn } = require('../middlewares/rolValidate');
+router.use(isLoggedIn)
 
-/* /reps */
+//* RUTAS /reps
 
 //*CREATE
 router.get('/new/', newRepForm);

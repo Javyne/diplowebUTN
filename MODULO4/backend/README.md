@@ -2,6 +2,24 @@
 
 ## ENTREGAS
 
+### *CHANGELOG 22/08/2022*
+
+### modulos:
+- Se instala modulo nodemailer
+
+### controllers:
+- Se elimina redireccionamento para usuarios no logueados, se cambia a middleware.
+- Se implementa controlador de envio de Mail.
+
+### middleware:
+- Se implementa "isLoggedIn" middleware para rutas, redirecciona a login si el usuario no esta autenticado.
+
+### routes:
+- Se implementa ruta en api para envio de mail.
+- Se implementa middleware "isLoggedIn" en las rutas.
+
+---------------------------------------------------------------------------------------
+
 ### *CHANGELOG 20/08/2022*
 
 ### app:
