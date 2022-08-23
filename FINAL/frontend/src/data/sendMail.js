@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const sendMail = async (formData) => {
-    return await axios.post('http://localhost:4000/api/mail', formData);
+    return await axios.post(`${process.env.REACT_APP_API_URL}/api/mail`, formData);
 }
 
 
