@@ -4,7 +4,7 @@ const uploader = util.promisify(cloud.uploader.upload);
 const destroyer = util.promisify(cloud.uploader.destroy);
 
 //*imagen generica
-const defaultImage = 'genericUser_ui4rst';
+const defaultImage = 'genericUser_ptpypv';
 
 //*Retorna id publica de las imagenes cargadas, 
 //*Valor por defecto, usuario generico
