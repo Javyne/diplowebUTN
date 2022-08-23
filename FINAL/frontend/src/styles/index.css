@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+:root{
+  /*--claro: #f9f8f6;
+  --acento-claro: #63b8e5;
+  --main: #2391e4;
+  --acento-oscuro: #6786af;
+  --oscuro: #14171c;*/
+
+  --claro: #efefef;
+  /*--acento-claro: #ffc947;*/
+  --acento-claro: #ff8c00;
+  --main: #557ed3;
+  --acento-oscuro: #185adb;
+  --oscuro: #0a1931;
+  --oscuro90:#0a193190;
+  --danger: #f44336;
+}
+
+body {
+  margin: 0;
+}
+
+
