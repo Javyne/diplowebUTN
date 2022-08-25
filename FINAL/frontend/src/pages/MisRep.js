@@ -22,10 +22,10 @@ export const MisRep = () => {
     e.preventDefault();
     let cliente_id = parseInt(e.target[0].value);
     let reps = (await reparaciones(cliente_id)).data;
-    console.log(reps)
 
     if (reps.length > 0) {
       setData(reps);
+      console.log(data)
       setHidden(true);
     }
     else {

@@ -85,6 +85,6 @@ const NavLinkLogo = (linkName) =>{
     }
     else
     {
-        return ('../../images/STINegro.png');
+        return ('../../images/STINEGRO.png');
     }
 }

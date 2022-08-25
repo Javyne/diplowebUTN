@@ -37,6 +37,7 @@ const AppPage = styled(Grid)`
     font-family: 'Lato', sans-serif;
     background: ${props => props.fondo};
     background-size: cover;
+
 `
 
 const AppNav = styled(Grid)`

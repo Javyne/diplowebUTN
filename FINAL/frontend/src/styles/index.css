@@ -17,8 +17,10 @@
   --danger: #f44336;
 }
 
-body {
+html, body {
   margin: 0;
+  min-height: 100%;
+  background: var(--claro);
 }
 
 
