@@ -2,6 +2,21 @@
 
 ## ENTREGAS
 
+### *CHANGELOG 30/08/2022*
+
+### controllers:
+- Se agrega id de usuario en sesión para link de navBar
+- Se implementa selfEditUserForm y selfUserEdit, edicion de usuario mediante el navbar
+
+### routes:
+- Se implementa selfEditUserForm y selfUserEdit, edicion de usuario mediante el navbar
+
+### views:
+- Se implementa selfEditUserForm
+- Se corrije imagen en formulario de nuevo cliente
+
+---------------------------------------------------------------------------------------
+
 ### *CHANGELOG 29/08/2022*
 
 ### controllers:

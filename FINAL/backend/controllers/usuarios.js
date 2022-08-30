@@ -66,6 +66,14 @@ const editUserForm = async (req, res) => {
 
 }
 
+const selfEditUserForm = async (req, res) => {
+
+  res.render('partials/usersForm/selfEditUserForm', {
+    data: setUrl(await getUserById(req.params.id))
+  });
+
+}
+
 //* UPDATE POST
 const userEdit = async (req, res) => {
 
@@ -75,6 +83,21 @@ const userEdit = async (req, res) => {
     img: req.files ? await imageOrDefault(req.files.imgFile) : req.body.img,
     es_admin: isChecked(req.body.es_admin),
     es_tecnico: isChecked(req.body.es_tecnico),
+  }
+
+  await updateUser(user, parseInt(req.params.id));
+  res.redirect('/usuarios')
+}
+
+const selfUserEdit = async (req, res) => {
+
+  const user = {
+    username: req.body.username,
+    pass: req.body.pass ? md5(req.body.pass) : await getUserById(req.params.id).pass,
+    nombre: req.body.nombre,
+    img: req.files ? await imageOrDefault(req.files.imgFile) : req.body.img,
+    es_admin: isChecked(req.body.es_admin),
+    es_tecnico: isChecked(req.body.es_tecnico)
   }
 
   await updateUser(user, parseInt(req.params.id));
@@ -105,5 +128,7 @@ module.exports = {
   newUser,
   newUserForm,
   editUserForm,
-  detailsUserForm
+  detailsUserForm,
+  selfEditUserForm,
+  selfUserEdit
 }
