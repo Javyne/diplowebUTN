@@ -34,16 +34,26 @@ export const Contacto = () => {
 }
 
 const Main = styled.div`
-
-  width: 100%;
   display: flex;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 const Formulario = styled.div`
-  width: 50%;
   border-right: 1px solid #ccc;
+  width: 50%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
 `
 const Data = styled.div`
   width: 50%;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   .mapa{
     width: 90%;
@@ -65,5 +75,6 @@ const Data = styled.div`
       }
     }
   }
+
 
 `

@@ -42,7 +42,8 @@ const AppPage = styled(Grid)`
 
 const AppNav = styled(Grid)`
     position: sticky;
-    top: 0;  
+    top: 0;
+    z-index: 2;
 
 `
 

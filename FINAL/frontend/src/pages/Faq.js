@@ -77,6 +77,11 @@ const ComoTrabajamos = styled.div`
     color: grey;
     width: 30%;
     margin-left: 35%;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-left: 0px;
+    }
+    
   }
 
   h2, h3, div{
@@ -84,18 +89,20 @@ const ComoTrabajamos = styled.div`
   }
 
   ul{
-    display: flex;
-    flex-direction: row wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     list-style: none;
-    border-top: 2px solid var(--acento-claro);
     margin-top: 5%;
     width: 80%;
     margin-left: 10%;
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-left: 0px;
+    }
 
     li{
-      width: 20%;
-
+      border-top: 2px solid var(--acento-claro);
       div{
         border: 2px solid var(--acento-claro);
         border-radius: 50%;
@@ -134,17 +141,27 @@ const Preguntas = styled.div`
 
   .Divaccordion{
     width: 40%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   img{
     width: 35%;
     border-radius: 10px;
     margin: 20px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .accordion-item{
     border-color: var(--acento-claro);
   }
+
+
+
 
 `
 

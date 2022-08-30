@@ -2,6 +2,16 @@
 
 ## ENTREGAS
 
+### *CHANGELOG 29/08/2022*
+
+### controllers:
+- Correccion findRep
+
+### routes:
+- Correccion ruta reparaciones findRep
+
+---------------------------------------------------------------------------------------
+
 ### *CHANGELOG 22/08/2022*
 
 ### modulos:

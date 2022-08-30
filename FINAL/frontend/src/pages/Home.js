@@ -49,6 +49,7 @@ const Contain = styled.div`
     top: 50%;
   }
 
+
 `
 const Pie = styled.div`
 
@@ -68,5 +69,7 @@ const Pie = styled.div`
     color: (--acento-oscuro);
   }
 
-
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `

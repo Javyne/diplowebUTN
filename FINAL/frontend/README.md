@@ -5,6 +5,13 @@
 ### *CHANGELOG 22/08/2022*
 
 ### components:
+- Se aplica MediaQueries en CSS para sitio responsive
+
+---------------------------------------------------------------------------------------
+
+### *CHANGELOG 22/08/2022*
+
+### components:
 - Se crea componente MailForm, para separar el formulario para envio de mails, de la pagina de contacto.
 - Actualizacion componente TablaRep.
 

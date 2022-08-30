@@ -1,5 +1,6 @@
 const { request, response } = require('express');
 const { getAllClients } = require('../models/clientes');
+const { filtrar } = require('../helpers/funciones');
 const { getAllReps, getRepById, insertRep, getRepJOINClient, updateRep, deleteRep, getRepsByClientId } = require('../models/reparaciones')
 
 //* CREATE GET
@@ -56,7 +57,7 @@ const findRep = async (req, res) => {
   const reparaciones = await getAllReps();
   const filtro = req.body.buscar;
 
-  res.render('pages/reps', {
+  res.render('pages/reparaciones', {
     rep: 'active',
     data: filtrar(reparaciones, filtro)
   });

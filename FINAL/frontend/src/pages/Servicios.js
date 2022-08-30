@@ -16,7 +16,6 @@ export const Servicios = () => {
           </ul>
         </CajaTexto>
         <Imagen src='../../images/it-1.jpg'/>
-        <Imagen src='../../images/it-2.jpg'/>
         <CajaTexto>
           <h3>Actualizaciones</h3>
           <hr/>
@@ -27,6 +26,7 @@ export const Servicios = () => {
               <li><FaCheckCircle/> Mejoras de la funcionalidad.</li>
             </ul>
         </CajaTexto>
+        <Imagen src='../../images/it-2.jpg'/>
         <CajaTexto>
           <h3>Control Remoto</h3>
           <hr/>
@@ -47,20 +47,22 @@ export const Servicios = () => {
 }
 
 const Main = styled.div`
-  width: 90%;
-  margin-left: 15%;
-  display: flex;
-  flex-wrap: wrap;
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-auto-rows: 25rem;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 `
 
 
 const CajaTexto = styled.div`
-  width: 35%;
+  width: 30rem;
   margin: 20px;
-  padding: 50px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+
 
   h3{
     font-weight: 700;
@@ -80,8 +82,7 @@ const CajaTexto = styled.div`
   }
 `
 const Imagen = styled.img`
-
-  width: 35%;
+  width: 30rem;
   border-radius: 10px;
   margin: 20px;
 
